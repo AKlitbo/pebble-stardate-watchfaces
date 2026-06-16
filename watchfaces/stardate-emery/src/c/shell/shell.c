@@ -220,12 +220,19 @@ void shell_set_weather(const char *temp, const char *condition)
     strncpy(s_weather_cond, condition ? condition : "--", sizeof(s_weather_cond) - 1);
     s_weather_cond[sizeof(s_weather_cond) - 1] = '\0';
 
+    // drop the night marker so "CLEAR_NIGHT" fits as "CLEAR" (the icon below uses the full string)
+    char *night = strchr(s_weather_cond, '_');
+    if (night)
+    {
+        *night = '\0';
+    }
+
     if (s_cond_layer)
     {
         text_layer_set_text(s_cond_layer, s_weather_cond);
     }
 
-    widgets_set_weather_icon(condition);
+    widgets_set_weather_icon(condition);  // full string (incl. _NIGHT) drives the glyph
 }
 
 // set the lat/lon readouts, with a placeholder when GPS is off
