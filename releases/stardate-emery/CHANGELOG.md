@@ -5,9 +5,6 @@ All notable changes to the Stardate Emery watchface are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-> [!NOTE]
-> These release numbers follow Semantic Versioning, including patch releases such as 1.0.1. The compiled Pebble app binary, however, encodes only MAJOR.MINOR (the patch component must be 0), so each patch release here maps to a minor version bump in package.json. For example, changelog version 1.0.1 is published as app version 1.1.0. This limitation applies only to the compiled binary. The store listing still uses the full semantic version number.
-
 ## [1.0.1] - 2026-06-15
 
 > [!IMPORTANT]
