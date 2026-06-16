@@ -16,9 +16,43 @@ void appmessage_request_weather(void)
     app_message_outbox_send();
 }
 
+// send the current settings to the phone so Clay can seed its store from the watch
+// (the watch persist is the source of truth, the phone's clay-settings can go stale)
+static void prv_send_settings(void)
+{
+    DictionaryIterator *iter;
+    if (app_message_outbox_begin(&iter) != APP_MSG_OK)
+    {
+        return;
+    }
+
+    // selects round-trip as strings, so send Theme/Traversal/Time as cstrings
+    char theme_buf[4];
+    char traversal_buf[4];
+    char time_buf[4];
+    snprintf(theme_buf, sizeof(theme_buf), "%d", g_settings.Theme);
+    snprintf(traversal_buf, sizeof(traversal_buf), "%d", g_settings.TraversalMode);
+    snprintf(time_buf, sizeof(time_buf), "%d", g_settings.TimeFormat);
+
+    dict_write_uint8(iter, MESSAGE_KEY_TEMPERATURE_UNIT, g_settings.TemperatureUnit ? 1 : 0);
+    dict_write_cstring(iter, MESSAGE_KEY_DATE_FORMAT, g_settings.DateFormat);
+    dict_write_cstring(iter, MESSAGE_KEY_THEME, theme_buf);
+    dict_write_cstring(iter, MESSAGE_KEY_TRAVERSAL_MODE, traversal_buf);
+    dict_write_cstring(iter, MESSAGE_KEY_TIME_FORMAT, time_buf);
+
+    app_message_outbox_send();
+}
+
 // apply an inbox message: weather, coords, and any changed settings
 static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 {
+    // the phone asks for the watch's settings on launch to seed Clay, so reply and stop
+    if (dict_find(iterator, MESSAGE_KEY_REQUEST_SETTINGS))
+    {
+        prv_send_settings();
+        return;
+    }
+
     Tuple *temp_tuple = dict_find(iterator, MESSAGE_KEY_TEMPERATURE);
     Tuple *conditions_tuple = dict_find(iterator, MESSAGE_KEY_CONDITIONS);
     Tuple *wx_ok_tuple = dict_find(iterator, MESSAGE_KEY_WEATHER_OK);
@@ -87,8 +121,8 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         g_settings.Theme = (uint8_t)atoi(theme_t->value->cstring);
     }
 
-    // TraversalMode and TimeFormat are <select>s, so they arrive as cstrings (Clay
-    // quirk) and need atoi like Theme above
+    // TraversalMode and TimeFormat are <select>s, so they arrive as cstrings 
+    // and need atoi like Theme above
     Tuple *traversal_t = dict_find(iterator, MESSAGE_KEY_TRAVERSAL_MODE);
     if (traversal_t)
     {

@@ -257,15 +257,51 @@ function getWeather() {
   );
 }
 
+/**
+ * Seeds the Clay store from the watch's current settings so the config opens
+ * with the real values instead of defaults. The watch persist is the source of
+ * truth; the phone's clay-settings can be empty or stale after an update.
+ * @param {!Object} payload
+ */
+function seedConfigFromWatch(payload) {
+  const config = getConfig();
+
+  if (messageKeys.TEMPERATURE_UNIT in payload) {
+    config.TEMPERATURE_UNIT = payload[messageKeys.TEMPERATURE_UNIT] === 1;
+  }
+  if (messageKeys.DATE_FORMAT in payload) {
+    config.DATE_FORMAT = payload[messageKeys.DATE_FORMAT];
+  }
+  if (messageKeys.THEME in payload) {
+    config.THEME = String(payload[messageKeys.THEME]);
+  }
+  if (messageKeys.TRAVERSAL_MODE in payload) {
+    config.TRAVERSAL_MODE = String(payload[messageKeys.TRAVERSAL_MODE]);
+  }
+  if (messageKeys.TIME_FORMAT in payload) {
+    config.TIME_FORMAT = String(payload[messageKeys.TIME_FORMAT]);
+  }
+
+  localStorage.setItem('clay-settings', JSON.stringify(config));
+}
+
 // app lifecycle listeners
 Pebble.addEventListener('ready', () => {
   console.log('PebbleKit JS Ready!');
+  Pebble.sendAppMessage({ [messageKeys.REQUEST_SETTINGS]: 1 });
   getWeather();
 });
 
 Pebble.addEventListener('appmessage', (event) => {
-  if (event.payload[messageKeys.REQUEST_WEATHER]) {
+  const payload = event.payload || {};
+
+  if (payload[messageKeys.REQUEST_WEATHER]) {
     getWeather();
+  }
+
+  // the watch's reply to our REQUEST_SETTINGS carries the display settings
+  if (messageKeys.DATE_FORMAT in payload || messageKeys.THEME in payload) {
+    seedConfigFromWatch(payload);
   }
 });
 
