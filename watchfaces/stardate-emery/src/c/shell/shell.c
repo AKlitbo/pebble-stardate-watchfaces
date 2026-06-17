@@ -55,13 +55,17 @@ static void load_background(void)
     {
         return;
     }
+
     s_loaded_theme = g_settings.Theme;
+
     if (s_lcars_bitmap)
     {
         gbitmap_destroy(s_lcars_bitmap);
         s_lcars_bitmap = NULL;
     }
+
     s_lcars_bitmap = gbitmap_create_with_resource(bg_resource_for_theme(g_settings.Theme));
+    
     if (s_lcars_layer)
     {
         bitmap_layer_set_bitmap(s_lcars_layer, s_lcars_bitmap);
@@ -154,9 +158,18 @@ void shell_update_time(struct tm *tick_time)
     }
 
     static char s_date_buffer[24];
-    strftime(s_date_buffer, sizeof(s_date_buffer), g_settings.DateFormat, tick_time);
-    draw_string_to_upper(s_date_buffer);
-    fit_date_layer(s_date_buffer);
+    char date_now[24];
+    strftime(date_now, sizeof(date_now), g_settings.DateFormat, tick_time);
+    draw_string_to_upper(date_now);
+
+    // the date only changes at midnight (or when the format changes), but this runs
+    // every tick/beat - skip the pixel-width fit + relayout unless the text differs
+    if (strcmp(date_now, s_date_buffer) != 0)
+    {
+        strncpy(s_date_buffer, date_now, sizeof(s_date_buffer) - 1);
+        s_date_buffer[sizeof(s_date_buffer) - 1] = '\0';
+        fit_date_layer(s_date_buffer);
+    }
 }
 
 // render the TRAVERSAL slot from the cached health readings per TraversalMode:
