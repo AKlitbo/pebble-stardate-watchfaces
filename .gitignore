@@ -9,7 +9,7 @@ watchfaces/*/shared/
 node_modules/
 npm-debug.log*
 
-# Editor / OS cruft
+# Editor / OS Cruft
 .DS_Store
 Thumbs.db
 *.swp
@@ -23,6 +23,10 @@ Thumbs.db
 
 # Various Dev Tools
 .dev-tools
+
+# Per Watchface Lock
+watchfaces/stardate-emery/package-lock.json
+watchfaces/stardate-gabbro/package-lock.json
 
 # Third-party vendored assets (fonts, icons, templates) - not redistributed.
 # Includes the TheLCARS.com template: please go to https://www.thelcars.com/

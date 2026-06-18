@@ -5,6 +5,12 @@ All notable changes to the Stardate Emery watchface are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-06-18
+
+### Added
+
+- Added many additional date format options, including day-first, month-first, and year-first layouts, text month formats, and two day-of-year formats.
+
 ## [1.0.3] - 2026-06-17
 
 ### Fixed
