@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LCARS Stardate — store banner</title>
+  <link rel="stylesheet" type="text/css" href="../../../../vendor/the-lcars/assets/classic.css">
+  <style>
+    html,
+    body {
+      display: block;
+      margin: 0;
+      padding: 0;
+      background: #000;
+    }
+
+    .lcars-page {
+      width: 720px;
+      height: 320px;
+      background: #000;
+      overflow: hidden;
+      --lfw: 150px;
+      --bar-height: 22px;
+      --radius-bottom: 104px 0 0 0;
+      --radius-content-bottom: 44px 0 0 0;
+      --left-frame-padding: .7rem;
+    }
+
+    .lcars-page .wrap {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .lcars-page #gap {
+      margin-top: 0;
+    }
+
+    .lcars-page main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex: 1;
+      padding: 0 40px;
+    }
+
+    .lcars-page .left-frame {
+      padding-top: 96px;
+      gap: 4px;
+    }
+
+    .lcars-page .left-frame .panel-5 {
+      height: 66px;
+    }
+
+    .lcars-page .left-frame .panel-7 {
+      height: 80px;
+    }
+
+    .lcars-page .left-frame .panel-6 {
+      flex: 1;
+      height: auto;
+      max-height: none;
+    }
+
+    .lcars-page .right-frame {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      z-index: 0;
+    }
+
+    .pics-right {
+      float: right;
+      margin-inline: 0;
+      margin-bottom: 0;
+      max-width: 500px;
+      clear: both;
+    }
+
+    .copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .copy .kicker {
+      color: var(--african-violet);
+      font-size: 15px;
+      letter-spacing: 6px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .copy h1 {
+      margin: 10px 0 0 0;
+      color: var(--golden-orange);
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .copy h1 .sub {
+      display: block;
+      color: var(--african-violet);
+    }
+
+    .copy .features {
+      margin: 16px 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .copy .features li {
+      color: #cfd2ff;
+      font-size: 15px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      white-space: nowrap;
+      line-height: 1.5;
+    }
+
+    .copy .features li::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 9px;
+      border-radius: 50%;
+      background: var(--golden-orange);
+      vertical-align: middle;
+    }
+
+    .device {
+      flex: none;
+    }
+
+    .device .bezel {
+      background: #111;
+      border: 6px solid #2a2a2a;
+      border-radius: 26px;
+      padding: 13px;
+      box-shadow: 0 0 0 2px #000, 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .device .screen {
+      width: 196px;
+      height: 223px;
+      display: block;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="lcars-page">
+    <div class="wrap" id="gap">
+      <div class="left-frame">
+        <div>
+          <div class="panel-3"></div>
+          <div class="panel-5">LCARS</div>
+          <div class="panel-7">
+            47
+            <span class="hop">-2319</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-frame">
+        <div class="bar-panel">
+          <div class="bar-6"></div>
+          <div class="bar-7"></div>
+          <div class="bar-8"></div>
+          <div class="bar-9"></div>
+          <div class="bar-10"></div>
+        </div>
+
+        <main>
+          <div class="copy">
+            <div class="kicker">OKUDAGRAM WATCHFACE</div>
+
+            <h1>
+              STARDATE
+              <span class="sub">EMERY</span>
+            </h1>
+
+            <ul class="features">
+              <li>Four authentic LCARS themes.</li>
+              <li>Live weather &amp; conditions.</li>
+              <li>Heart rate &amp; step tracking.</li>
+              <li>Bluetooth connection alerts.</li>
+            </ul>
+          </div>
+
+          <div class="pics-right">
+            <div class="device">
+              <div class="bezel">
+                <img class="screen" src="../theme_classic.png" alt="LCARS Stardate watchface">
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

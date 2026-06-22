@@ -1,9 +1,20 @@
-# Changelog - Stardate Emery
+# Changelog - LCARS Stardate Emery
 
 All notable changes to the Stardate Emery watchface are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.2.0] - 2026-06-20
+
+### Added
+
+- Added a Bluetooth connection icon that shows whether the watch is linked to your phone. It is shown by default and can be toggled off in settings.
+- Added optional connection alerts that buzz the watch when the phone reconnects or disconnects. Each can be set independently to None, Short, Long, or Double. Both are off by default and can be enabled in settings.
+
+### Fixed
+
+- The longest date formats now shrink to fit within the date banner instead of being clipped. Wide layouts such as the text month and day-of-year formats previously overflowed the banner, and the smaller fallback sizes now sit centered within it.
 
 ## [1.1.0] - 2026-06-18
 
