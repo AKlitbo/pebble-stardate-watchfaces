@@ -55,7 +55,7 @@ Please refer to their original source repositories and websites for full license
 
 ## License
 
-**Source Code:** © 2026 Andrew Klitbo, licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). This license was chosen to help keep the project aligned with the non-commercial nature of the LCARS-inspired assets and Star Trek fan-project guidelines.
+**Source Code:** © 2026 Andrew Klitbo (Null Syntax), licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). This license was chosen to help keep the project aligned with the non-commercial nature of the LCARS-inspired assets and Star Trek fan-project guidelines.
 
 You may use, modify, fork, and share it freely for any **noncommercial** purpose, personal use, hobby projects, study, and the like. See [LICENSE](LICENSE) for the full terms.
 
