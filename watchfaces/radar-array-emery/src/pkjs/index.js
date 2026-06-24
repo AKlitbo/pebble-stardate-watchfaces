@@ -49,9 +49,15 @@ function request(url, callback) {
   const xhr = new XMLHttpRequest();
 
   xhr.onload = () => {
-    callback(null, xhr.responseText);
+    // a 2xx is a success; for any other status still forward the body so a
+    // provider can read a structured error response, but report it as an error
+    if (xhr.status >= 200 && xhr.status < 300) {
+      callback(null, xhr.responseText);
+    } else {
+      callback('http ' + xhr.status, xhr.responseText);
+    }
   };
-  
+
   xhr.onerror = () => {
     callback('network error');
   };
@@ -165,27 +171,40 @@ function sendWeather(result) {
 }
 
 /**
+ * Reports whether a coordinate pair is within the valid geographic range.
+ * @param {*} lat
+ * @param {*} lon
+ * @return {boolean}
+ */
+function validCoord(lat, lon) {
+  return typeof lat === 'number' && lat >= -90 && lat <= 90 &&
+    typeof lon === 'number' && lon >= -180 && lon <= 180;
+}
+
+/**
  * Reads the manual location the user picked in settings.
  * @param {!Object} config
  * @return {?{coords: {lat: number, lon: number}, label: string}}
  */
 function getManualLocation(config) {
   const raw = readValue(config.LOCATION_NAME, '');
-  
+
   if (!raw) {
     return null;
   }
-  
+
   try {
     let o = raw;
     if (typeof raw === 'string') {
       o = JSON.parse(raw);
     }
-    
-    if (o && typeof o.lat === 'number' && typeof o.lon === 'number') {
-      return { 
-        coords: { lat: o.lat, lon: o.lon }, 
-        label: o.label || '' 
+
+    // a corrupt blob with out-of-range coordinates is treated as no manual
+    // location rather than forwarded to the provider verbatim
+    if (o && validCoord(o.lat, o.lon)) {
+      return {
+        coords: { lat: o.lat, lon: o.lon },
+        label: o.label || ''
       };
     }
   } catch (e) { 
@@ -204,7 +223,7 @@ function getWeather() {
   
   const opts = {
     provider: String(readValue(config.WEATHER_PROVIDER, DEFAULTS.WEATHER_PROVIDER)),
-    key: String(readValue(config.API_KEY, DEFAULTS.API_KEY || '')),
+    key: String(readValue(config.API_KEY, DEFAULTS.API_KEY || '')).trim().slice(0, 64),
     fahrenheit: readBool(config.TEMPERATURE_UNIT, DEFAULTS.TEMPERATURE_UNIT),
     coords: null,
     label: undefined,
@@ -270,28 +289,33 @@ function getWeather() {
 function seedConfigFromWatch(payload) {
   const config = getConfig();
 
+  // the payload comes from the watch's own persist, which the C side already
+  // sanitizes at boot - but guard the copy so a malformed round-trip can't seed
+  // a junk value (or non-primitive) into the Clay store
+  const isEnum = (value) => typeof value === 'string' || typeof value === 'number';
+
   if (messageKeys.TEMPERATURE_UNIT in payload) {
     config.TEMPERATURE_UNIT = payload[messageKeys.TEMPERATURE_UNIT] === 1;
   }
-  if (messageKeys.DATE_FORMAT in payload) {
+  if (messageKeys.DATE_FORMAT in payload && typeof payload[messageKeys.DATE_FORMAT] === 'string') {
     config.DATE_FORMAT = payload[messageKeys.DATE_FORMAT];
   }
-  if (messageKeys.THEME in payload) {
+  if (messageKeys.THEME in payload && isEnum(payload[messageKeys.THEME])) {
     config.THEME = String(payload[messageKeys.THEME]);
   }
-  if (messageKeys.STEPS_MODE in payload) {
+  if (messageKeys.STEPS_MODE in payload && isEnum(payload[messageKeys.STEPS_MODE])) {
     config.STEPS_MODE = String(payload[messageKeys.STEPS_MODE]);
   }
-  if (messageKeys.TIME_FORMAT in payload) {
+  if (messageKeys.TIME_FORMAT in payload && isEnum(payload[messageKeys.TIME_FORMAT])) {
     config.TIME_FORMAT = String(payload[messageKeys.TIME_FORMAT]);
   }
   if (messageKeys.BLUETOOTH_ICON in payload) {
     config.BLUETOOTH_ICON = payload[messageKeys.BLUETOOTH_ICON] === 1;
   }
-  if (messageKeys.BLUETOOTH_VIBE_CONNECT in payload) {
+  if (messageKeys.BLUETOOTH_VIBE_CONNECT in payload && isEnum(payload[messageKeys.BLUETOOTH_VIBE_CONNECT])) {
     config.BLUETOOTH_VIBE_CONNECT = String(payload[messageKeys.BLUETOOTH_VIBE_CONNECT]);
   }
-  if (messageKeys.BLUETOOTH_VIBE_DISCONNECT in payload) {
+  if (messageKeys.BLUETOOTH_VIBE_DISCONNECT in payload && isEnum(payload[messageKeys.BLUETOOTH_VIBE_DISCONNECT])) {
     config.BLUETOOTH_VIBE_DISCONNECT = String(payload[messageKeys.BLUETOOTH_VIBE_DISCONNECT]);
   }
 
@@ -318,8 +342,44 @@ Pebble.addEventListener('appmessage', (event) => {
   }
 });
 
+/** @const {!Array<string>} Settings that require a fresh fetch when they change. */
+const WEATHER_KEYS = ['WEATHER_PROVIDER', 'API_KEY', 'TEMPERATURE_UNIT', 'USE_GPS', 'GPS_FALLBACK', 'LOCATION_NAME'];
+
+/**
+ * Snapshots the weather-relevant settings so a later save can be diffed against
+ * them. Each value is JSON-encoded so objects compare by content.
+ * @return {!Array<*>}
+ */
+function weatherSettingsSnapshot() {
+  const config = getConfig();
+  return WEATHER_KEYS.map((key) => JSON.stringify(config[key]));
+}
+
+/** @type {?Array<*>} Weather settings captured when the config page opened. */
+let weatherSettingsBeforeConfig = null;
+
+// Clay persists the new settings in its own webviewclosed handler, which runs
+// before ours, so capture the previous values while the page is still open
+Pebble.addEventListener('showConfiguration', () => {
+  weatherSettingsBeforeConfig = weatherSettingsSnapshot();
+});
+
 Pebble.addEventListener('webviewclosed', (event) => {
-  if (event && event.response) {
+  if (!event || !event.response) {
+    return;
+  }
+
+  // only refetch when a weather-relevant setting actually changed - the C side
+  // already re-requests weather for those via affects_weather, so an
+  // unconditional refetch just duplicates work on every unrelated save (theme,
+  // vibe, date format). With no snapshot, fall back to refetching
+  const before = weatherSettingsBeforeConfig;
+  weatherSettingsBeforeConfig = null;
+
+  const after = weatherSettingsSnapshot();
+  const changed = !before || WEATHER_KEYS.some((key, index) => after[index] !== before[index]);
+
+  if (changed) {
     setTimeout(getWeather, 250);
   }
 });
