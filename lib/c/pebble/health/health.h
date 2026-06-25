@@ -7,6 +7,8 @@
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Subscribe to health events.
  *
@@ -34,3 +36,5 @@ int health_get_today_steps(void);
  * @return Distance in meters.
  */
 int health_get_today_distance(void);
+
+/** @} */

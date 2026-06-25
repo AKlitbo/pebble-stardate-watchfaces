@@ -10,9 +10,13 @@
 #pragma once
 #include "settings/settings.h"
 
+/** @addtogroup watchface-radar @{ */
+
 /**
  * @brief Gets the settings schema for this face.
  *
  * @return A pointer to the schema.
  */
 const SettingsSchema *radar_settings_schema(void);
+
+/** @} */

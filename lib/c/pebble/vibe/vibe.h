@@ -1,14 +1,16 @@
 /**
  * @file vibe.h
  * @brief haptic feedback wrapper
+ *
+ * @ingroup lib
  */
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Defines the available haptic pulse patterns.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -23,3 +25,5 @@ typedef enum
  * @param pulse The pulse pattern to fire.
  */
 void vibe_pulse(VibePulse pulse);
+
+/** @} */

@@ -7,6 +7,8 @@
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup watchface-radar @{ */
+
 /**
  * @brief Maps the Theme setting (0=Default, 1=Rescue, 2=Neon, 3=Stealth,
  * 4=Phosphor, 5=Crimson) to its baked frame background resource.
@@ -32,3 +34,5 @@ GColor panel_accent_for_theme(uint8_t theme);
  * @return The primary color.
  */
 GColor primary_color_for_theme(uint8_t theme);
+
+/** @} */

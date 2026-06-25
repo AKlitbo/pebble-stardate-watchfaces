@@ -1,16 +1,15 @@
 {
   "name": "lcars-stardate-emery",
   "author": "Null Syntax",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "keywords": [
     "pebble-app"
   ],
   "private": true,
   "dependencies": {},
   "scripts": {
-    "gen:frame": "node tools/generate-frame.js",
-    "gen:frames": "node tools/generate-frame.js classic-standard && node tools/generate-frame.js lower-decks && node tools/generate-frame.js lower-decks-padd && node tools/generate-frame.js nemesis-blue-standard"
-  },  
+    "gen:frame": "node tools/generate-frame.js"
+  },
   "pebble": {
     "displayName": "Stardate Emery",
     "uuid": "68b0e2fe-b970-4cb2-8b4c-45ea9c13d968",
@@ -75,48 +74,48 @@
         {
           "type": "font",
           "name": "FONT_ANTONIO_62",
-          "file": "../../../lib/resources/fonts/Antonio.ttf",
+          "file": "fonts/Antonio.ttf",
           "characterRegex": "[0-9:@]"
         },
         {
           "type": "font",
           "name": "FONT_ANTONIO_36",
-          "file": "../../../lib/resources/fonts/Antonio.ttf",
+          "file": "fonts/Antonio.ttf",
           "characterRegex": "[A-Z0-9 ./-]"
         },
         {
           "type": "font",
           "name": "FONT_ANTONIO_32",
-          "file": "../../../lib/resources/fonts/Antonio.ttf",
+          "file": "fonts/Antonio.ttf",
           "characterRegex": "[A-Z0-9 ./-]"
         },
         {
           "type": "font",
           "name": "FONT_ANTONIO_28",
-          "file": "../../../lib/resources/fonts/Antonio.ttf",
+          "file": "fonts/Antonio.ttf",
           "characterRegex": "[A-Z0-9 ./-]"
         },
         {
           "type": "font",
           "name": "FONT_ANTONIO_20",
-          "file": "../../../lib/resources/fonts/Antonio.ttf"
+          "file": "fonts/Antonio.ttf"
         },
         {
           "type": "font",
           "name": "FONT_ANTONIO_16",
-          "file": "../../../lib/resources/fonts/Antonio.ttf",
+          "file": "fonts/Antonio.ttf",
           "characterRegex": "[A-Z0-9 .-]"
         },
         {
           "type": "font",
           "name": "FONT_ANTONIO_12",
-          "file": "../../../lib/resources/fonts/Antonio.ttf",
+          "file": "fonts/Antonio.ttf",
           "characterRegex": "[0-9-]"
         },
         {
           "type": "font",
           "name": "FONT_ANTONIO_10",
-          "file": "../../../lib/resources/fonts/Antonio.ttf"
+          "file": "fonts/Antonio.ttf"
         }
       ]
     }

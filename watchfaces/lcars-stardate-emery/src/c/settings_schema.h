@@ -9,9 +9,13 @@
 #pragma once
 #include "settings/settings.h"
 
+/** @addtogroup watchface-lcars @{ */
+
 /**
  * @brief Gets the settings schema for this face.
  *
  * @return A pointer to the schema.
  */
 const SettingsSchema *lcars_settings_schema(void);
+
+/** @} */

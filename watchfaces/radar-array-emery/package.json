@@ -1,16 +1,14 @@
 {
   "name": "radar-array-emery",
   "author": "Null Syntax",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "pebble-app"
   ],
   "private": true,
   "dependencies": {},
   "scripts": {
-    "gen:frame": "node tools/generate-frame.js radar-array",
-    "gen:themes": "node tools/generate-frame.js radar-array --theme all",
-    "gen:preview": "node tools/generate-frame.js radar-array --preview"
+    "gen:themes": "node tools/generate-frame.js radar-array --theme all"
   },
   "pebble": {
     "displayName": "Radar Array",

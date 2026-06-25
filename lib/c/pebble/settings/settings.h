@@ -3,17 +3,19 @@
  * @brief persist API: a per-face SettingField table drives versioned load/save,
  * sanitize, the typed reads, and the appmessage round-trip - so shared code never
  * names or hardcodes a field
+ *
+ * @ingroup lib
  */
 #pragma once
 #include <pebble.h>
+
+/** @addtogroup lib @{ */
 
 /**
  * @brief Identity of a known (shared) setting, used for typed reads and indexing.
  *
  * Face-only settings sit in the same field table but carry an id of SETTING_COUNT
  * or greater, so they are serialised yet never indexed for a shared read.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -30,8 +32,6 @@ typedef enum
 
 /**
  * @brief How a setting encodes on the wire and how the sanitize pass clamps it.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -42,8 +42,6 @@ typedef enum
 
 /**
  * @brief Blueprint for a single setting.
- *
- * @ingroup lib
  */
 typedef struct
 {
@@ -66,8 +64,6 @@ typedef struct
  * load into (its first byte must be the uint8_t version), that struct's size, the
  * field table that drives defaults/sanitize/serialisation, and an optional migration
  * hook to rescue pre-versioned data.
- *
- * @ingroup lib
  */
 typedef struct SettingsSchema
 {
@@ -83,8 +79,6 @@ typedef struct SettingsSchema
 
 /**
  * @brief Carries what an inbound settings message changed, so the caller can react.
- *
- * @ingroup lib
  */
 typedef struct
 {
@@ -137,3 +131,5 @@ void settings_serialize(DictionaryIterator *iter);
  * @return Which categories of setting changed.
  */
 SettingsInbound settings_apply_inbox(DictionaryIterator *iter);
+
+/** @} */

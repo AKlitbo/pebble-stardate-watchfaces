@@ -5,6 +5,8 @@
  * @file shell.h
  * @brief ui shell: handles the window lifecycle, layer placement, and ticking. faces
  * define how to paint the layout and decode the settings; the shell drives them
+ *
+ * @ingroup lib
  */
 #pragma once
 #include <pebble.h>
@@ -14,13 +16,12 @@
 /**
  * @defgroup lib Library Components
  * @brief Core reusable components.
+ * @{
  */
 
 /**
  * @brief What the bluetooth glyph should show. BT_HIDDEN covers the case where the user
  * turned the indicator off, so the face draws nothing.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -31,8 +32,6 @@ typedef enum
 
 /**
  * @brief The active face exposes its paint routines and zone table to the shell.
- *
- * @ingroup lib
  */
 typedef struct
 {
@@ -102,3 +101,5 @@ void shell_set_weather(const char *temp, const char *condition);
  * @param lon Longitude string.
  */
 void shell_set_coords(const char *lat, const char *lon);
+
+/** @} */

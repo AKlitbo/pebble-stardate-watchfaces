@@ -7,6 +7,8 @@
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Fires on every phone-app connection change, and once at init to seed state.
  *
@@ -32,3 +34,5 @@ void connection_deinit(void);
  * @return True when the phone (pebble app) is currently connected.
  */
 bool connection_is_connected(void);
+
+/** @} */

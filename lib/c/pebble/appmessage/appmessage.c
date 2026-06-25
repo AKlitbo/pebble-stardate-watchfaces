@@ -10,12 +10,9 @@
 
 static AppMessageHandlers s_handlers;
 
-// Phone-side pkjs suspend retry count
-#define WEATHER_RETRY_MAX 3
-// Delay to ride out transient drop
-#define WEATHER_RETRY_DELAY_MS 5000
-// How often weather is re-polled
-#define WEATHER_POLL_INTERVAL_S (30 * 60)
+#define WEATHER_RETRY_MAX 3                // Phone-side pkjs suspend retry count
+#define WEATHER_RETRY_DELAY_MS 5000        // Delay to ride out transient drop
+#define WEATHER_POLL_INTERVAL_S (30 * 60)  // How often weather is re-polled
 
 // wall-clock time of the last weather request, so the poll cadence is one elapsed
 // clock the face can drive from any ticker

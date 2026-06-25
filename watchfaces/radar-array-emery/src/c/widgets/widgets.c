@@ -2,6 +2,8 @@
  * @file widgets.c
  * @brief Painted overlays: the static frame labels and the battery gauge, drawn over
  * the baked frame.
+ *
+ * @ingroup watchface-radar
  */
 #include "widgets.h"
 
@@ -18,10 +20,10 @@ static int s_batt_level;
 static GBitmap *s_bt_on_bmp, *s_bt_off_bmp;
 static BluetoothStatus s_bt_status = BT_HIDDEN;
 
+/** @addtogroup watchface-radar @{ */
+
 /**
  * @brief Label definition mapping an area to its string text.
- *
- * @ingroup watchface-radar
  */
 typedef struct
 {
@@ -215,3 +217,5 @@ void widgets_mark_labels_dirty(void)
         layer_mark_dirty(s_battery_layer);
     }
 }
+
+/** @} */

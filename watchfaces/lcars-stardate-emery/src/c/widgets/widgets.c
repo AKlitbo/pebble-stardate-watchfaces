@@ -1,6 +1,8 @@
 /**
  * @file widgets.c
  * @brief Painted overlays: battery gauge, bar labels, weather/heart/feet glyphs.
+ *
+ * @ingroup watchface-lcars
  */
 #include "widgets.h"
 
@@ -23,6 +25,8 @@ static int s_batt_level;
 // --- LCARS skin primitives ---
 // stateless painters (ctx in, pixels out) for the chrome only LCARS faces draw:
 // the holder-box label and the segmented battery gauge
+
+/** @addtogroup watchface-lcars @{ */
 
 /**
  * @brief Draw a left-aligned label inside a black LCARS holder box.
@@ -116,8 +120,6 @@ static void lcars_battery_gauge(GContext *ctx, GRect area, int level, GColor acc
 
 /**
  * @brief Label definition mapping an area to its string text.
- *
- * @ingroup watchface-lcars
  */
 typedef struct
 {
@@ -381,3 +383,5 @@ void widgets_mark_labels_dirty(void)
         layer_mark_dirty(s_battery_layer);
     }
 }
+
+/** @} */

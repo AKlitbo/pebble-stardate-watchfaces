@@ -1,6 +1,8 @@
 /**
  * @file zone.h
  * @brief layout primitives: defines paintable areas and text alignments
+ *
+ * @ingroup lib
  */
 // a Zone is everything needed to present one text slot: where it sits, which
 // registered font + alignment + colour to use, and up to two smaller font/rect
@@ -11,12 +13,12 @@
 
 #include "fonts.h"
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief The slot vocabulary shared by the current (vitals) face family.
  *
  * A face that diverges from this set would define its own enum + shell.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -34,8 +36,6 @@ typedef enum
 
 /**
  * @brief Defines a paintable area, including geometry and styling.
- *
- * @ingroup lib
  */
 typedef struct
 {
@@ -66,3 +66,5 @@ TextLayer *zone_make_layer(Layer *parent, const Zone *zone);
  * @param text The text to set.
  */
 void zone_set_text_fit(TextLayer *layer, const Zone *zone, const char *text);
+
+/** @} */

@@ -12,6 +12,7 @@
 /**
  * @defgroup watchface-lcars LCARS Watchface
  * @brief The LCARS Stardate Emery watchface.
+ * @{
  */
 
 // --- Text Slots ---
@@ -51,3 +52,5 @@
  * @brief The stardate-emery face descriptor (zone table + frame/overlay hooks) for shell_init.
  */
 const WatchfaceDescriptor *stardate_emery_face(void);
+
+/** @} */

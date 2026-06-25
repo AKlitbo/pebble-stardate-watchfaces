@@ -15,6 +15,7 @@
 /**
  * @defgroup watchface-radar Radar Array Watchface
  * @brief The Radar Array Emery watchface.
+ * @{
  */
 
 // --- Text Slots ---
@@ -48,3 +49,5 @@
  * @brief The radar-array-emery face descriptor (zone table + frame/overlay hooks) for shell_init.
  */
 const WatchfaceDescriptor *radar_array_face(void);
+
+/** @} */

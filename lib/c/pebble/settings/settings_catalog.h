@@ -7,9 +7,13 @@
  * field table at the offset of the matching struct member - and by declaring the
  * setting's MESSAGE_KEY in the face's package.json. Face-only settings are declared
  * inline in the table instead, with an id of SETTING_COUNT or greater.
+ *
+ * @ingroup lib
  */
 #pragma once
 #include "settings/settings.h"
+
+/** @addtogroup lib @{ */
 
 /**
  * @brief Setting definition for Temperature Unit.
@@ -82,3 +86,5 @@
 #define KNOWN_BLUETOOTH_VIBE_DISCONNECT(off, count) \
     { .id = SETTING_BLUETOOTH_VIBE_DISCONNECT, .message_key = &MESSAGE_KEY_BLUETOOTH_VIBE_DISCONNECT, \
       .type = SETTING_ENUM_U8, .offset = (off), .enum_count = (count) }
+
+/** @} */

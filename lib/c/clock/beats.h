@@ -16,6 +16,8 @@
 #define SECS_PER_MIN     60
 #define BMT_UTC_OFFSET_S 3600        // Biel Mean Time = UTC+1
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Calculates swatch internet time in .beats (0..999) for a given ms.
  *
@@ -34,3 +36,5 @@ int beats_from_ms(int64_t ms_into_bmt_day);
  * @return Milliseconds remaining until the next beat boundary (1 to 86400).
  */
 uint32_t ms_until_next_beat(int64_t ms_into_bmt_day);
+
+/** @} */

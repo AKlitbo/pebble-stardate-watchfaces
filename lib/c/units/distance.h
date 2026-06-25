@@ -8,6 +8,8 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Meters to miles.
  *
@@ -33,3 +35,5 @@ float distance_m_to_km(int meters);
  * @param miles Format as miles if true, otherwise km.
  */
 void distance_format(char *buffer, size_t size, int meters, bool miles);
+
+/** @} */

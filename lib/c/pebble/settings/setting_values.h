@@ -6,13 +6,15 @@
  * them by name instead. The order mirrors each setting's config.js option list,
  * and the trailing *_COUNT sentinel feeds the schema's enum_count so the bound
  * can't drift from the values.
+ *
+ * @ingroup lib
  */
 #pragma once
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief SETTING_TIME_FORMAT choices.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -25,8 +27,6 @@ typedef enum
 
 /**
  * @brief SETTING_STEPS_MODE choices.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -38,8 +38,6 @@ typedef enum
 
 /**
  * @brief Bluetooth connect/disconnect vibe pattern choices.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -49,3 +47,5 @@ typedef enum
     VIBE_DOUBLE = 3,
     VIBE_COUNT
 } VibeChoice;
+
+/** @} */

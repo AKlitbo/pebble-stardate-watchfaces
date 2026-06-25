@@ -9,6 +9,8 @@
 
 #include "shell/shell.h"
 
+/** @addtogroup watchface-lcars @{ */
+
 /**
  * @brief Painted overlays drawn on top of the baked LCARS frame.
  *
@@ -51,3 +53,5 @@ void widgets_set_bluetooth(BluetoothStatus status);
  * @brief Force a label repaint.
  */
 void widgets_mark_labels_dirty(void);
+
+/** @} */

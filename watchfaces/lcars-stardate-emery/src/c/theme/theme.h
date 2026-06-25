@@ -7,6 +7,8 @@
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup watchface-lcars @{ */
+
 /**
  * @brief Maps the Theme setting (0=Classic, 1=Lower Decks, 2=PADD, 3=Nemesis Blue) to
  * its baked LCARS background resource.
@@ -24,3 +26,5 @@ uint32_t bg_resource_for_theme(uint8_t theme);
  * @return The accent color.
  */
 GColor panel_accent_for_theme(uint8_t theme);
+
+/** @} */

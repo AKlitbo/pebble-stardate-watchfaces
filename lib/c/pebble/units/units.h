@@ -7,6 +7,8 @@
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Current swatch internet time in .beats.
  *
@@ -30,3 +32,5 @@ uint32_t units_ms_until_next_beat(void);
  * @param miles Format as miles if true, otherwise km.
  */
 void units_format_distance(char *buffer, size_t size, int meters, bool miles);
+
+/** @} */

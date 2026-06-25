@@ -4,6 +4,8 @@
  *
  * key 5 and the 21-byte v1 floor are frozen - changing either makes watches in the
  * field lose their settings.
+ *
+ * @ingroup watchface-lcars
  */
 #include "settings_schema.h"
 #include "settings/settings_catalog.h"
@@ -17,14 +19,14 @@
 // smallest versioned blob accepted; fields are append-only so this never changes
 #define LCARS_SETTINGS_V1_SIZE 21
 
+/** @addtogroup watchface-lcars @{ */
+
 /**
  * @brief lcars's persisted settings.
  *
  * The byte layout is frozen: it shipped as a flat blob (version byte, then
  * each field in this order), so members may be renamed but never reordered,
  * retyped, or inserted - only appended. The static asserts below guard it.
- *
- * @ingroup watchface-lcars
  */
 typedef struct LcarsSettings
 {
@@ -62,8 +64,6 @@ static const SettingField s_fields[] = {
  * @brief The pre-versioning layout (no version field) that shipped under key 5.
  *
  * Kept only so the migration can lift an existing blob into the current struct.
- *
- * @ingroup watchface-lcars
  */
 typedef struct ClaySettingsV0
 {
@@ -116,3 +116,5 @@ const SettingsSchema *lcars_settings_schema(void)
 {
     return &s_schema;
 }
+
+/** @} */

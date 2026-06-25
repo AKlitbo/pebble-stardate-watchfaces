@@ -4,14 +4,16 @@
  * of the ui looks them up by id so layout tables can stay static (an id, not a
  * runtime GFont handle). single-platform binaries register their own handles, so
  * there is no per-platform font-set resolution here
+ *
+ * @ingroup lib
  */
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Identifier for each loaded font category.
- *
- * @ingroup lib
  */
 typedef enum
 {
@@ -46,3 +48,5 @@ GFont fonts_get(FontId id);
  * @brief Unload every registered font and clear the registry.
  */
 void fonts_unload_all(void);
+
+/** @} */

@@ -7,6 +7,8 @@
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Fires on every battery change, and once at init to seed state.
  *
@@ -32,3 +34,5 @@ void battery_deinit(void);
  * @return The current battery charge state.
  */
 BatteryChargeState battery_peek(void);
+
+/** @} */

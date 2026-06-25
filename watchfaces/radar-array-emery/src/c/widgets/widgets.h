@@ -14,6 +14,8 @@
 
 #include "shell/shell.h"
 
+/** @addtogroup watchface-radar @{ */
+
 /**
  * @brief Create the overlay layers.
  *
@@ -51,3 +53,5 @@ void widgets_set_bluetooth(BluetoothStatus status);
  * @brief Force a label + gauge repaint.
  */
 void widgets_mark_labels_dirty(void);
+
+/** @} */

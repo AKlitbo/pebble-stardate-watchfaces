@@ -1,14 +1,16 @@
 /**
  * @file appmessage.h
  * @brief appmessage transport: decodes the inbox and notifies the app via handlers
+ *
+ * @ingroup lib
  */
 #pragma once
 #include <pebble.h>
 
+/** @addtogroup lib @{ */
+
 /**
  * @brief Callbacks the app supplies so the transport stays decoupled from the ui shell.
- *
- * @ingroup lib
  */
 typedef struct
 {
@@ -39,3 +41,5 @@ void appmessage_request_weather(void);
  * @param now The current wall-clock time.
  */
 void appmessage_request_weather_if_due(time_t now);
+
+/** @} */

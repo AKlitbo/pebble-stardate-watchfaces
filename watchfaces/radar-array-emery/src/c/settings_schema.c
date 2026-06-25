@@ -5,6 +5,8 @@
  * This face never existed without the bluetooth fields, so it owns version 1
  * with no legacy migration. it keeps its own struct and persist key, so its
  * blob and versioning are independent of any other face.
+ *
+ * @ingroup watchface-radar
  */
 #include "settings_schema.h"
 #include "settings/settings_catalog.h"
@@ -15,10 +17,10 @@
 #define RADAR_SETTINGS_KEY 1
 #define RADAR_SETTINGS_VERSION 1
 
+/** @addtogroup watchface-radar @{ */
+
 /**
  * @brief The full schema for this face.
- *
- * @ingroup watchface-radar
  */
 typedef struct RadarSettings
 {
@@ -65,3 +67,5 @@ const SettingsSchema *radar_settings_schema(void)
 {
     return &s_schema;
 }
+
+/** @} */
