@@ -37,7 +37,7 @@ This repository contains multiple watchface variants and the shared library that
 
 ## Third-Party Assets
 
-This repository bundles the Antonio font and generated icon PNGs under `lib/resources/icons/` (rasterized from vendored SVG sources). The Weather Icons, UXWing SVGs, and the TheLCARS.com frame template are *not* bundled and must be fetched independently to regenerate icons or bake frames; the SVG Repo Bluetooth SVGs are bundled under `vendor/svgrepo/`. They remain under their respective open-source licenses or terms:
+This repository bundles the Antonio font and generated icon PNGs (rasterized from vendored SVG sources). The Weather Icons, UXWing SVGs, and the TheLCARS.com frame template are *not* bundled and must be fetched independently to regenerate icons or bake frames; the SVG Repo Bluetooth SVGs are bundled under `vendor/svgrepo/`. They remain under their respective open-source licenses or terms:
 
 **LCARS Stardate**
 * [Antonio Font](https://fonts.google.com/specimen/Antonio) (SIL Open Font License 1.1), bundled
