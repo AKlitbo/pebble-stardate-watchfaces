@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IDE VSCode — store banner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@vscode/codicons@latest/dist/codicon.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1e1e1e;
+      --primary: #569CD6;
+      --secondary: #CE9178;
+      --tertiary: #DCDCAA;
+      --text: #D4D4D4;
+      --accent: #4EC9B0;
+      --ui-bg: #252526;
+      --ui-border: #333333;
+    }
+
+    html,
+    body {
+      display: block;
+      margin: 0;
+      padding: 0;
+      background: #000;
+    }
+
+    .banner-page {
+      width: 720px;
+      height: 320px;
+      background: var(--bg);
+      overflow: hidden;
+      position: relative;
+      font-family: 'Fira Code', Consolas, monospace;
+      border-left: 4px solid #007ACC;
+      box-sizing: border-box;
+    }
+
+    .title-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: #181818;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--ui-border);
+      z-index: 10;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #CCCCCC;
+      font-size: 13px;
+    }
+
+    .title-bar-left {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      gap: 10px;
+    }
+
+    .menu-item {
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 3px;
+    }
+    
+    .menu-item:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .title-bar-right {
+      display: flex;
+      height: 100%;
+    }
+
+    .window-control {
+      width: 46px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    .window-control:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .window-control.close:hover {
+      background: #E81123;
+      color: white;
+    }
+    
+    .window-control .codicon {
+      font-size: 16px;
+    }
+
+    .tabs-bar {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      right: 0;
+      height: 35px;
+      background: #252526;
+      display: flex;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--ui-border);
+      z-index: 9;
+    }
+
+    .tab {
+      height: 100%;
+      background: #1E1E1E;
+      color: var(--text);
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-family: 'Segoe UI', sans-serif;
+      border-top: 1px solid #007ACC;
+      border-right: 1px solid var(--ui-border);
+      gap: 6px;
+    }
+    
+    .tab .codicon {
+      color: #F5D061; /* Yellow JS icon color */
+      font-size: 16px;
+    }
+
+    .sidebar {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      background: var(--ui-bg);
+      border-right: 1px solid var(--ui-border);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 12px;
+      gap: 16px;
+    }
+    
+    .sidebar .codicon {
+      font-size: 24px;
+      color: #858585;
+      cursor: pointer;
+    }
+    
+    .sidebar .codicon.active {
+      color: var(--text);
+    }
+
+    .line-numbers {
+      position: absolute;
+      top: 65px;
+      left: 40px;
+      bottom: 0;
+      width: 25px;
+      padding-top: 45px;
+      text-align: right;
+      color: #858585;
+      font-size: 12px;
+      line-height: 24px;
+      z-index: 5;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: calc(100% - 65px);
+      margin-top: 65px;
+      padding: 0 35px 0 85px;
+      box-sizing: border-box;
+    }
+
+    .copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .copy .kicker {
+      color: var(--secondary);
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+    
+    .kicker::before {
+      content: "// ";
+      color: #6A9955;
+    }
+
+    .copy h1 {
+      margin: 0 0 10px 0;
+      color: var(--tertiary);
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: 0px;
+    }
+    
+    .copy h1::before {
+      content: "const ";
+      color: var(--primary);
+      font-size: 16px;
+      vertical-align: middle;
+    }
+    
+    .copy h1::after {
+      content: " = {";
+      color: var(--text);
+      font-size: 20px;
+      vertical-align: middle;
+    }
+
+    .copy .features {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      padding-left: 15px;
+    }
+
+    .copy .features li {
+      color: var(--text);
+      font-size: 13px;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+    
+    .copy .features li .prop {
+      color: #9CDCFE;
+    }
+    
+    .copy .features li .val {
+      color: var(--secondary);
+    }
+    
+    .copy .bracket {
+      color: var(--text);
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .copy .bracket::after {
+      content: ";";
+    }
+
+    .device-container {
+      flex: none;
+      position: relative;
+    }
+
+    .device {
+      position: relative;
+      z-index: 2;
+    }
+
+    .device .bezel {
+      background: #111;
+      border: 5px solid #222;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 0 0 2px #000, 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .device .screen {
+      width: 176px;
+      height: 200px;
+      display: block;
+      border-radius: 5px;
+      image-rendering: pixelated;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner-page">
+    <div class="title-bar">
+      <div class="title-bar-left">
+        <i class="codicon codicon-code" style="color: #007ACC; font-size: 16px; margin-right: 4px;"></i>
+        <span class="menu-item">File</span>
+        <span class="menu-item">Edit</span>
+        <span class="menu-item">Selection</span>
+        <span class="menu-item">View</span>
+        <span class="menu-item">Go</span>
+        <span class="menu-item">Run</span>
+      </div>
+      <div class="title-bar-right">
+        <div class="window-control"><i class="codicon codicon-chrome-minimize"></i></div>
+        <div class="window-control"><i class="codicon codicon-chrome-maximize"></i></div>
+        <div class="window-control close"><i class="codicon codicon-chrome-close"></i></div>
+      </div>
+    </div>
+    
+    <div class="tabs-bar">
+      <div class="tab">
+        <i class="codicon codicon-symbol-file"></i>
+        watchface.js
+      </div>
+    </div>
+    
+    <div class="sidebar">
+      <i class="codicon codicon-files active"></i>
+      <i class="codicon codicon-search"></i>
+      <i class="codicon codicon-source-control"></i>
+    </div>
+    
+    <div class="line-numbers">
+      1<br>2<br>3<br>4<br>5<br>6<br>7<br>8
+    </div>
+
+    <div class="wrap">
+      <div class="copy">
+        <div class="kicker">DEVELOPER WATCHFACE</div>
+
+        <h1>IDE_VSCODE</h1>
+
+        <ul class="features">
+          <li><span class="prop">style</span>: <span class="val">"Authentic IDE Interface"</span>,</li>
+          <li><span class="prop">weather</span>: <span class="val">"Live Conditions"</span>,</li>
+          <li><span class="prop">health</span>: <span class="val">"Heart Rate & Steps"</span>,</li>
+          <li><span class="prop">bluetooth</span>: <span class="val">"Connection Alerts"</span></li>
+        </ul>
+        
+        <div class="bracket">}</div>
+      </div>
+
+      <div class="device-container">
+        <div class="device">
+          <div class="bezel">
+            <img class="screen" src="../theme_dark.png" alt="IDE VSCode watchface">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
