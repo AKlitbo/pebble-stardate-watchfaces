@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*
+  VS Code Dark+ palette for the frame chrome. Every value is a Pebble-64 GColor
+  pulled from lib/css/pebble-colors.css, so baked fills land on real colors with no
+  dithering. The dynamic readout vars (--time-fg / --date-fg / --stats-fg) name the
+  same GColors theme.c draws with, so the preview matches the on-watch render.
+*/
+:root {
+    --editor-bg:       var(--GColorBlack);
+    --editor-fg:       var(--GColorLightGray);
+
+    --activity-bg:     var(--GColorDarkGray);
+    --activity-fg:     var(--GColorLightGray);
+    --activity-active: var(--GColorWhite);
+    --activity-border: none;
+    --accent:          var(--GColorCobaltBlue);
+
+    --tabbar-bg:       var(--GColorBlack);
+    --tab-active-bg:   var(--GColorBlack);
+    --tab-fg:          var(--GColorWhite);
+    --tab-icon:        var(--GColorTiffanyBlue);
+    --tab-accent:      1px solid var(--GColorCobaltBlue);
+
+    --time-fg:         var(--GColorVividCerulean);
+    --date-fg:         var(--GColorRajah);
+    --stats-fg:        var(--GColorMediumAquamarine);
+
+    /* terminal panel: dark field, blue prompt, yellow command, syntax-coloured values */
+    --panel-bg:            var(--GColorBlack);
+    --panel-border:        1px solid var(--GColorDarkGray);
+    --panel-tab-fg:        var(--GColorLightGray);
+    --panel-tab-active-fg: var(--GColorWhite);
+    --prompt-fg:           var(--GColorVividCerulean);
+    --cmd-fg:              var(--GColorPastelYellow);
+    --val-date-fg:         var(--GColorRajah);
+    --val-cond-fg:         var(--GColorMediumAquamarine);
+    --val-temp-fg:         var(--GColorMediumAquamarine);
+    --val-hr-fg:           var(--GColorRed);
+    --val-steps-fg:        var(--GColorCeleste);
+
+    --status-bg:       var(--GColorCobaltBlue);
+    --status-fg:       var(--GColorWhite);
+    --status-border:   none;
+}

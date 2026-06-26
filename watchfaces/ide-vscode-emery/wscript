@@ -1,0 +1,41 @@
+# ==============================================================================
+# Waf build rules for the VS Code watchface.
+#
+# Thin per-face wrapper: regenerate generated assets, then hand the shared build
+# (sources, per-platform compile, bundle, .pbw archive) to lib/py/waf_helpers.py.
+# This face ships the weather glyph, so it keeps the shared lib/c/weather/icons.c.
+# ==============================================================================
+import os.path
+import sys
+from waflib.Tools import c_preproc
+
+# let waf's preprocessor scanner trace through absolute include paths (the shared
+# lib/ lives two levels up) so it discovers the transitive pebble.h include and
+# the SDK can inject the resource_ids.auto.h dependency before compilation starts
+c_preproc.go_absolute = True
+
+top = '.'
+out = 'build'
+
+
+def options(ctx):
+    ctx.load('pebble_sdk')
+
+
+def configure(ctx):
+    ctx.load('pebble_sdk')
+
+
+def build(ctx):
+    ctx.load('pebble_sdk')
+
+    # load the shared waf helpers from lib/py (repo root)
+    lib_path = os.path.join(ctx.path.parent.parent.abspath(), 'lib', 'py')
+    if lib_path not in sys.path:
+        sys.path.insert(0, lib_path)
+        
+    import waf_helpers
+
+    waf_helpers.generate_conditions(ctx)
+    waf_helpers.generate_frames(ctx)
+    waf_helpers.build_face(ctx)

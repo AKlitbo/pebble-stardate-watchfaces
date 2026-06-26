@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*
+  Terminal (hacker/phosphor) palette: pure-black field, neon-green everything, dashed
+  borders. Every value is a Pebble-64 GColor from lib/css/pebble-colors.css. The
+  green is GColorGreen - the same green theme.c draws the readouts in, so chrome and
+  text match exactly.
+*/
+:root {
+    --editor-bg:       var(--GColorBlack);
+    --editor-fg:       var(--GColorGreen);
+
+    --activity-bg:     var(--GColorBlack);
+    --activity-fg:     var(--GColorGreen);
+    --activity-active: var(--GColorGreen);
+    --activity-border: 1px dashed var(--GColorGreen);
+    --accent:          var(--GColorGreen);
+
+    --tabbar-bg:       var(--GColorBlack);
+    --tab-active-bg:   var(--GColorBlack);
+    --tab-fg:          var(--GColorGreen);
+    --tab-icon:        var(--GColorGreen);
+    --tab-accent:      1px dashed var(--GColorGreen);
+
+    --time-fg:         var(--GColorGreen);
+    --date-fg:         var(--GColorGreen);
+    --stats-fg:        var(--GColorGreen);
+
+    /* terminal panel: pure phosphor green on black, dashed separator, dimmer inactive tabs */
+    --panel-bg:            var(--GColorBlack);
+    --panel-border:        1px dashed var(--GColorGreen);
+    --panel-tab-fg:        var(--GColorIslamicGreen);
+    --panel-tab-active-fg: var(--GColorGreen);
+    --prompt-fg:           var(--GColorGreen);
+    --cmd-fg:              var(--GColorGreen);
+    --val-date-fg:         var(--GColorGreen);
+    --val-cond-fg:         var(--GColorGreen);
+    --val-temp-fg:         var(--GColorGreen);
+    --val-hr-fg:           var(--GColorGreen);
+    --val-steps-fg:        var(--GColorGreen);
+
+    --status-bg:       var(--GColorBlack);
+    --status-fg:       var(--GColorGreen);
+    --status-border:   1px dashed var(--GColorGreen);
+}

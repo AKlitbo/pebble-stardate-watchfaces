@@ -1,0 +1,43 @@
+@charset "utf-8";
+/*
+  A plain black-and-white palette: no syntax colour at all, just white and gray on a
+  black field. Every value is a Pebble-64 GColor from lib/css/pebble-colors.css. The
+  readout vars name the same grays theme.c draws with, so chrome and text match.
+*/
+:root {
+    --editor-bg:       var(--GColorBlack);
+    --editor-fg:       var(--GColorWhite);
+
+    --activity-bg:     var(--GColorDarkGray);
+    --activity-fg:     var(--GColorLightGray);
+    --activity-active: var(--GColorWhite);
+    --activity-border: none;
+    --accent:          var(--GColorWhite);
+
+    --tabbar-bg:       var(--GColorBlack);
+    --tab-active-bg:   var(--GColorBlack);
+    --tab-fg:          var(--GColorWhite);
+    --tab-icon:        var(--GColorLightGray);
+    --tab-accent:      1px solid var(--GColorWhite);
+
+    --time-fg:         var(--GColorWhite);
+    --date-fg:         var(--GColorLightGray);
+    --stats-fg:        var(--GColorLightGray);
+
+    /* terminal panel: black field, white prompt, everything in grayscale */
+    --panel-bg:            var(--GColorBlack);
+    --panel-border:        1px solid var(--GColorDarkGray);
+    --panel-tab-fg:        var(--GColorDarkGray);
+    --panel-tab-active-fg: var(--GColorWhite);
+    --prompt-fg:           var(--GColorWhite);
+    --cmd-fg:              var(--GColorLightGray);
+    --val-date-fg:         var(--GColorLightGray);
+    --val-cond-fg:         var(--GColorLightGray);
+    --val-temp-fg:         var(--GColorLightGray);
+    --val-hr-fg:           var(--GColorWhite);
+    --val-steps-fg:        var(--GColorWhite);
+
+    --status-bg:       var(--GColorDarkGray);
+    --status-fg:       var(--GColorWhite);
+    --status-border:   none;
+}

@@ -1,0 +1,45 @@
+@charset "utf-8";
+/*
+  Cyberpunk "Scarlet Protocol" palette (max-SS.cyberpunk) mapped into the Pebble-64
+  gamut from lib/css/pebble-colors.css. Near-black field (#101116 -> black) with
+  scarlet (#ff0055 -> GColorFolly) as the signature, plus neon cyan, yellow, and
+  magenta accents. The readout vars name the same GColors theme.c draws with, so the
+  preview matches the on-watch render.
+*/
+:root {
+    --editor-bg:       var(--GColorBlack);
+    --editor-fg:       var(--GColorLightGray);
+
+    --activity-bg:     var(--GColorBlack);
+    --activity-fg:     var(--GColorLightGray);
+    --activity-active: var(--GColorWhite);
+    --activity-border: none;
+    --accent:          var(--GColorFolly);
+
+    --tabbar-bg:       var(--GColorBlack);
+    --tab-active-bg:   var(--GColorBlack);
+    --tab-fg:          var(--GColorWhite);
+    --tab-icon:        var(--GColorVividCerulean);
+    --tab-accent:      1px solid var(--GColorFolly);
+
+    --time-fg:         var(--GColorFolly);
+    --date-fg:         var(--GColorVividCerulean);
+    --stats-fg:        var(--GColorIcterine);
+
+    /* terminal panel: black field, scarlet prompt, yellow command, neon syntax values */
+    --panel-bg:            var(--GColorBlack);
+    --panel-border:        1px solid var(--GColorFolly);
+    --panel-tab-fg:        var(--GColorDarkGray);
+    --panel-tab-active-fg: var(--GColorWhite);
+    --prompt-fg:           var(--GColorFolly);
+    --cmd-fg:              var(--GColorIcterine);
+    --val-date-fg:         var(--GColorVividCerulean);
+    --val-cond-fg:         var(--GColorIcterine);
+    --val-temp-fg:         var(--GColorIcterine);
+    --val-hr-fg:           var(--GColorFolly);
+    --val-steps-fg:        var(--GColorShockingPink);
+
+    --status-bg:       var(--GColorFolly);
+    --status-fg:       var(--GColorWhite);
+    --status-border:   none;
+}

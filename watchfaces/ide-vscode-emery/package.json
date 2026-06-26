@@ -1,0 +1,104 @@
+{
+  "name": "ide-vscode-emery",
+  "author": "Null Syntax",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {},
+  "scripts": {
+    "gen:themes": "node tools/generate-frame.js vscode --theme all"
+  },
+  "pebble": {
+    "displayName": "VS Code",
+    "uuid": "1ab9dff0-f6fd-4e0a-8e23-bc9ff80d45f2",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "capabilities": [
+      "location",
+      "configurable",
+      "health"
+    ],
+    "messageKeys": [
+      "TEMPERATURE",
+      "CONDITIONS",
+      "REQUEST_WEATHER",
+      "REQUEST_SETTINGS",
+      "WEATHER_OK",
+      "LATITUDE",
+      "LONGITUDE",
+      "LOCATION_NAME",
+      "USE_GPS",
+      "GPS_FALLBACK",
+      "WEATHER_PROVIDER",
+      "API_KEY",
+      "TEMPERATURE_UNIT",
+      "DATE_FORMAT",
+      "THEME",
+      "STEPS_MODE",
+      "TIME_FORMAT",
+      "BLUETOOTH_ICON",
+      "BLUETOOTH_VIBE_CONNECT",
+      "BLUETOOTH_VIBE_DISCONNECT",
+      "BATTERY_DISPLAY"
+    ],
+    "resources": {
+      "media": [
+        { "type": "bitmap", "name": "IMAGE_BG_DARK", "file": "images/background-dark.png" },
+        { "type": "bitmap", "name": "IMAGE_BG_LIGHT", "file": "images/background-light.png" },
+        { "type": "bitmap", "name": "IMAGE_BG_TERMINAL", "file": "images/background-terminal.png" },
+        { "type": "bitmap", "name": "IMAGE_BG_CYBERPUNK", "file": "images/background-cyberpunk.png" },
+        { "type": "bitmap", "name": "IMAGE_BG_SYNTHWAVE", "file": "images/background-synthwave.png" },
+        { "type": "bitmap", "name": "IMAGE_BG_MONO", "file": "images/background-mono.png" },
+        { "type": "bitmap", "name": "ICON_BLUETOOTH", "file": "../../../lib/resources/icons/bluetooth-sm.png" },
+        { "type": "bitmap", "name": "ICON_BLUETOOTH_SLASH", "file": "../../../lib/resources/icons/bluetooth-slash-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_CLEAR", "file": "../../../lib/resources/icons/wi-clear-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_NIGHT_CLEAR", "file": "../../../lib/resources/icons/wi-night-clear-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_CLOUDY", "file": "../../../lib/resources/icons/wi-cloudy-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_FOG", "file": "../../../lib/resources/icons/wi-fog-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_DRIZZLE", "file": "../../../lib/resources/icons/wi-drizzle-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_RAIN", "file": "../../../lib/resources/icons/wi-rain-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_SLEET", "file": "../../../lib/resources/icons/wi-sleet-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_SNOW", "file": "../../../lib/resources/icons/wi-snow-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_SHOWERS", "file": "../../../lib/resources/icons/wi-showers-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_SNOW_WIND", "file": "../../../lib/resources/icons/wi-snow-wind-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_THUNDERSTORM", "file": "../../../lib/resources/icons/wi-thunderstorm-sm.png" },
+        { "type": "bitmap", "name": "ICON_WI_NA", "file": "../../../lib/resources/icons/wi-na-sm.png" },
+        {
+          "type": "font",
+          "name": "FONT_TEKO_78",
+          "file": "fonts/Teko-SemiBold.ttf",
+          "characterRegex": "[0-9:@]"
+        },
+        {
+          "type": "font",
+          "name": "FONT_TEKO_72",
+          "file": "fonts/Teko-SemiBold.ttf",
+          "characterRegex": "[0-9:@]"
+        },
+        {
+          "type": "font",
+          "name": "FONT_STM_20",
+          "file": "fonts/ShareTechMono-Regular.ttf"
+        },
+        {
+          "type": "font",
+          "name": "FONT_STM_14",
+          "file": "fonts/ShareTechMono-Regular.ttf"
+        },
+        {
+          "type": "font",
+          "name": "FONT_STM_12",
+          "file": "fonts/ShareTechMono-Regular.ttf"
+        }
+      ]
+    }
+  }
+}

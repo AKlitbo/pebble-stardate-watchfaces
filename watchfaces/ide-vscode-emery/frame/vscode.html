@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VS Code</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
+        <!-- Codicons (MIT, github.com/microsoft/vscode-codicons) for the IDE chrome -->
+        <link rel="stylesheet" href="https://microsoft.github.io/vscode-codicons/dist/codicon.css">
+        <!-- Font Awesome (CC BY 4.0) for the battery + steps glyphs -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- shared Pebble-64 palette: defines the --GColor* variables the themes use -->
+        <link rel="stylesheet" type="text/css" href="../../../lib/css/pebble-colors.css">
+        <link rel="stylesheet" type="text/css" href="css/frame.css">
+        <link rel="stylesheet" type="text/css" href="css/theme_dark.css">
+    </head>
+    <body>
+        <div class="viewport">
+            <div class="watch menubar">
+                <!-- title / menu bar: baked chrome -->
+                <header class="titlebar">
+                    <div class="menu">
+                        <span>File</span>
+                        <span>Edit</span>
+                        <span>Help</span>
+                    </div>
+                    <div class="wins">
+                        <i class="codicon codicon-chrome-minimize"></i>
+                        <i class="codicon codicon-chrome-maximize"></i>
+                        <i class="codicon codicon-chrome-close"></i>
+                    </div>
+                </header>
+
+                <!-- activity bar: baked chrome -->
+                <nav class="activity">
+                    <i class="codicon codicon-files active"></i>
+                    <i class="codicon codicon-search"></i>
+                    <i class="codicon codicon-source-control"></i>
+                    <i class="codicon codicon-debug-alt"></i>
+                    <i class="codicon codicon-extensions"></i>
+                </nav>
+
+                <!-- editor tab strip: baked chrome -->
+                <div class="tabs">
+                    <div class="tab">
+                        <i class="codicon codicon-file-code file-icon"></i>
+                        <span>time.ts</span>
+                        <i class="codicon codicon-close close"></i>
+                    </div>
+                </div>
+
+                <!-- tab-strip battery: both the % and the icon are app-drawn (the icon
+                     fills to the charge level), so nothing is baked here -->
+                <div class="tab-actions">
+                    <span class="data batt">87%</span>
+                </div>
+
+                <!-- editor pane: the app draws the clock + terminal values live -->
+                <div class="editor">
+                    <!-- single-line hero clock with the date right beneath it -->
+                    <div class="time">08:16</div>
+                    <div class="data date">Jun 18</div>
+
+                    <!-- integrated terminal: prompt + glyphs baked, values app-drawn -->
+                    <div class="panel">
+                        <div class="panel-tabs">
+                            <span>PROBLEMS</span>
+                            <span>OUTPUT</span>
+                            <span class="active">TERMINAL</span>
+                        </div>
+                        <div class="term-prompt"><span class="ps">PS E:\></span> <span class="cmd">./status.sh</span></div>
+
+                        <!-- left column: weather condition over temp. the condition
+                             glyph is app-drawn (swapped per condition + tinted), so it
+                             is not baked here - only its value text -->
+                        <span class="data cond">SUN</span>
+                        <i class="fa-solid fa-temperature-half term-glyph temp"></i>
+                        <span class="data temp">72&deg;</span>
+
+                        <!-- right column: heart rate over steps -->
+                        <i class="fa-solid fa-heart-pulse term-glyph hr"></i>
+                        <span class="data hr">72</span>
+                        <i class="fa-solid fa-person-walking term-glyph steps"></i>
+                        <span class="data steps">6,214</span>
+                    </div>
+                </div>
+
+                <!-- status bar: baked chrome -->
+                <footer class="statusbar">
+                    <div class="left">
+                        <i class="codicon codicon-source-control"></i>
+                        <span>main</span>
+                        <i class="codicon codicon-error"></i>
+                        <span>0</span>
+                        <i class="codicon codicon-warning"></i>
+                        <span>0</span>
+                    </div>
+                    <div class="right">
+                        <span>UTF-8</span>
+                        <span class="lang">{ } TS</span>
+                        <i class="codicon codicon-bell"></i>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script>
+            // ?frame switches to the shipped chrome-only bake: clear the live
+            // readouts so only the static frame chrome is captured
+            if (location.search.indexOf('frame') >= 0) {
+              document.documentElement.classList.add('frame-render');
+              document.querySelectorAll('.time, .data')
+                      .forEach(function (el) { el.textContent = ''; });
+            }
+        </script>
+    </body>
+</html>
